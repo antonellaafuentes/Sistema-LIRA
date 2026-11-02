@@ -36,10 +36,7 @@ def render_quiz_view(df_alerts: pd.DataFrame):
                 )
                 if seleccion:
                     marcadas.append(f"{fila['Conducta']} ({fila['Categoría']})")
-            
-            st.write("")
         
-        st.markdown("<br>", unsafe_allow_html=True)
         col_btn1, col_btn2 = st.columns([1, 3])
         with col_btn1:
             submit = st.form_submit_button("Analizar respuestas", use_container_width=True)

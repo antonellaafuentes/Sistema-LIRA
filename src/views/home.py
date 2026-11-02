@@ -10,7 +10,7 @@ def render_home_view(df_alerts: pd.DataFrame, df_resources: pd.DataFrame):
         unsafe_allow_html=True
     )
     
-    col_izq, col_der = st.columns([1.8, 1.2], gap="large")
+    col_izq, col_der = st.columns([1.8, 1.2], gap="medium")
     
     with col_izq:
         st.markdown("""
@@ -21,7 +21,6 @@ def render_home_view(df_alerts: pd.DataFrame, df_resources: pd.DataFrame):
         - 🤝 **Directorio de apoyo:** Accede a números de teléfono, centros de atención y horarios disponibles en todo momento.
         """)
         
-        st.markdown("<br>", unsafe_allow_html=True)
         c1, c2 = st.columns(2)
         with c1:
             st.metric("Señales tipificadas", len(df_alerts))

@@ -19,7 +19,7 @@ def render_alerts_view(df_alerts: pd.DataFrame):
     categorias = ["Todas las categorías"] + sorted(list(df_alerts["Categoría"].unique()))
     
     # Barra de controles con selector de categoría y buscador de texto
-    col_filtro, col_search = st.columns([1, 2], gap="medium")
+    col_filtro, col_search = st.columns([1, 2], gap="small")
     with col_filtro:
         cat_seleccionada = st.selectbox("Filtrar por categoría", categorias)
     with col_search:
@@ -29,7 +29,6 @@ def render_alerts_view(df_alerts: pd.DataFrame):
     df_filtrado = filter_alerts(df_alerts, cat_seleccionada, busqueda)
     
     st.caption(f"Mostrando **{len(df_filtrado)}** de **{len(df_alerts)}** señal(es)")
-    st.markdown("<br>", unsafe_allow_html=True)
     
     # Mostramos cada tarjeta de alerta resultante
     for _, fila in df_filtrado.iterrows():
