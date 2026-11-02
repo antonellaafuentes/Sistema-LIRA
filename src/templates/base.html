@@ -58,9 +58,9 @@
         <span class="safe-exit-text">
           🔒 Navegación confidencial • Tus datos no se guardan en ningún servidor
         </span>
-        <a href="https://www.google.com" class="safe-exit-link" target="_self">
+        <button type="button" class="safe-exit-link" onclick="quickExit()" title="Abre Google en nueva pestaña y reemplaza esta ventana sin dejar rastro en el historial">
           ✕ Salida Rápida (Cerrar)
-        </a>
+        </button>
       </div>
 
       <!-- BLOQUE ESPECÍFICO DE CADA VISTA -->
@@ -68,8 +68,16 @@
     </main>
   </div>
 
-  <!-- SCRIPT PARA GUARDAR Y APLICAR TEMA SIN RECARGAS EXTRAÑAS -->
+  <!-- SCRIPT PARA GUARDAR Y APLICAR TEMA Y SALIDA RÁPIDA -->
   <script>
+    // Salida rápida: abre Google en nueva pestaña y reemplaza la página actual sin dejar historial
+    function quickExit() {
+      // 1. Abrir nueva pestaña con Google
+      window.open('https://www.google.com', '_blank', 'noopener,noreferrer');
+      // 2. Reemplazar la página actual en el historial inmediatamente con Google
+      window.location.replace('https://www.google.com');
+    }
+
     function setTheme(theme) {
       document.documentElement.setAttribute('data-theme', theme);
       localStorage.setItem('lira-theme', theme);
@@ -86,10 +94,25 @@
       }
     }
 
-    // Cargar tema guardado al inicio
+    // Inicializar tema: preferir preferencia del sistema operativo / navegador si el usuario no ha elegido manualmente
     (function() {
-      const savedTheme = localStorage.getItem('lira-theme') || 'light';
-      setTheme(savedTheme);
+      const savedTheme = localStorage.getItem('lira-theme');
+      if (savedTheme) {
+        setTheme(savedTheme);
+      } else {
+        // Detectar si el navegador / SO prefiere modo oscuro
+        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        setTheme(prefersDark ? 'dark' : 'light');
+      }
+
+      // Escuchar cambios del sistema en tiempo real si el usuario no ha forzado uno manualmente
+      if (window.matchMedia) {
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+          if (!localStorage.getItem('lira-theme')) {
+            setTheme(e.matches ? 'dark' : 'light');
+          }
+        });
+      }
     })();
   </script>
 </body>
