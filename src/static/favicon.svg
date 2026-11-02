@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <defs>
+    <linearGradient id="liraGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6366F1" />
+      <stop offset="100%" stop-color="#4338CA" />
+    </linearGradient>
+  </defs>
+  <!-- Escudo Protector LIRA -->
+  <path d="M16 2 L28 6 V15 C28 22.5 22.8 28.2 16 30 C9.2 28.2 4 22.5 4 15 V6 Z" fill="url(#liraGrad)" />
+  <!-- Borde interior elegante -->
+  <path d="M16 4.2 L26 7.5 V15 C26 21.2 21.7 26.1 16 27.8 C10.3 26.1 6 21.2 6 15 V7.5 Z" fill="none" stroke="#FFFFFF" stroke-opacity="0.3" stroke-width="1.2" />
+  <!-- Corazón de contención y acompañamiento en el centro -->
+  <path d="M16 11.8 C14.5 9.8 11.2 9.8 9.8 11.8 C8.4 13.8 9 16.5 11 18.5 L16 23.2 L21 18.5 C23 16.5 23.6 13.8 22.2 11.8 C20.8 9.8 17.5 9.8 16 11.8 Z" fill="#FFFFFF" />
+</svg>
