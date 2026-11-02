@@ -9,15 +9,15 @@
 <div class="resources-grid">
   {% for item in resources %}
   <div class="resource-card">
-    <div>
+    <div class="resource-card-content">
       <div class="resource-title">🏛️ {{ item.Servicio }}</div>
       <div class="schedule-text">🕒 <strong>Atención:</strong> {{ item.Horario }}</div>
-      {% if item.Notas and item.Notas != 'nan' %}
+      {% if item.Notas and item.Notas != 'nan' and item.Notas.strip() != '' %}
       <div class="resource-note">ℹ️ {{ item.Notas }}</div>
       {% endif %}
     </div>
 
-    <div>
+    <div class="resource-card-footer">
       <a 
         href="{{ item.action.url }}" 
         class="btn-cta {{ item.action.btn_class }}" 

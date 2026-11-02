@@ -30,9 +30,10 @@ def _read_resources_file() -> pd.DataFrame:
         return pd.DataFrame(columns=["Servicio", "Contacto", "Horario", "Notas"])
     
     df = pd.read_csv(RUTA_CSV_2, encoding="utf-8-sig")
+    df = df.fillna("")
     df.columns = [str(col).strip() for col in df.columns]
     for col in df.columns:
-        df[col] = df[col].astype(str).str.strip()
+        df[col] = df[col].astype(str).str.strip().replace("nan", "")
     return df.dropna(how="all")
 
 # Funciones públicas de carga (optimizadas para web o consola)

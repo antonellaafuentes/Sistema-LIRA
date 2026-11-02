@@ -47,7 +47,7 @@ def parse_contact_action(contacto: str):
         return {
             "url": url,
             "label": "🌐 Visitar sitio web oficial",
-            "btn_class": "website-cta-btn",
+            "btn_class": "btn-web",
             "target": "_blank",
             "rel": 'rel="noopener noreferrer"'
         }
@@ -63,7 +63,7 @@ def parse_contact_action(contacto: str):
     return {
         "url": tel_url,
         "label": f"📞 Llamar: {contacto_clean}",
-        "btn_class": "phone-cta-btn",
+        "btn_class": "btn-phone",
         "target": "_self",
         "rel": ""
     }
