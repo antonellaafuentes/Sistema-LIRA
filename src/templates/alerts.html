@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="hero-title">Identificación de Señales de Alerta</div>
+<div class="hero-subtitle">
+  Conoce cómo se manifiestan patrones de aislamiento, control o agresiones sutiles en las relaciones.
+</div>
+
+<!-- BARRA DE FILTROS -->
+<form method="get" action="/alertas" class="filter-bar">
+  <select name="categoria" class="filter-select" onchange="this.form.submit()">
+    <option value="Todas las categorías" {% if selected_category == 'Todas las categorías' %}selected{% endif %}>
+      Todas las categorías
+    </option>
+    {% for cat in categories %}
+    <option value="{{ cat }}" {% if selected_category == cat %}selected{% endif %}>
+      {{ cat }}
+    </option>
+    {% endfor %}
+  </select>
+
+  <input 
+    type="text" 
+    name="q" 
+    class="filter-input" 
+    placeholder="Buscar conducta o concepto (ej: celular, celos, culpa)..." 
+    value="{{ search_query }}"
+  >
+  <button type="submit" class="btn-cta btn-primary" style="margin-top: 0; padding: 0.6rem 1rem;">
+    Buscar
+  </button>
+</form>
+
+<div style="font-size: 0.86rem; color: var(--text-muted); margin-bottom: 1rem;">
+  Mostrando <strong>{{ alerts|length }}</strong> señal(es) encontrada(s)
+</div>
+
+<!-- LISTA DE TARJETAS DE ALERTA -->
+{% for item in alerts %}
+<div class="card-pro">
+  <span class="badge-category {{ item.badge_class }}">{{ item.Categoría }}</span>
+  <h3 class="card-title">{{ item.Conducta }}</h3>
+  <p class="card-description">{{ item.Descripción }}</p>
+</div>
+{% else %}
+<div class="card-pro">
+  <p class="card-description">No se encontraron señales con los filtros seleccionados.</p>
+</div>
+{% endfor %}
+{% endblock %}

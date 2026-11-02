@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema LIRA | Espacio Seguro y Orientación</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <div class="app-layout">
+    <!-- BARRA LATERAL -->
+    <aside class="sidebar">
+      <div>
+        <div class="brand-header">
+          <div class="brand-title">🛡️ Sistema LIRA</div>
+          <div class="brand-subtitle">Línea de Información, Recursos y Alerta</div>
+        </div>
+
+        <!-- SELECTOR DE TEMA CLARO / OSCURO -->
+        <div class="theme-switch-box">
+          <button type="button" class="theme-btn active" id="btn-light" onclick="setTheme('light')">
+            ☀️ Claro
+          </button>
+          <button type="button" class="theme-btn" id="btn-dark" onclick="setTheme('dark')">
+            🌙 Oscuro
+          </button>
+        </div>
+
+        <!-- MENÚ DE NAVEGACIÓN -->
+        <nav class="nav-menu">
+          <a href="/" class="nav-item {% if active_page == 'home' %}active{% endif %}">
+            🏠 Inicio
+          </a>
+          <a href="/alertas" class="nav-item {% if active_page == 'alerts' %}active{% endif %}">
+            ⚠️ Señales de Alerta
+          </a>
+          <a href="/recursos" class="nav-item {% if active_page == 'resources' %}active{% endif %}">
+            📞 Recursos de Ayuda
+          </a>
+          <a href="/autoevaluacion" class="nav-item {% if active_page == 'quiz' %}active{% endif %}">
+            📋 Autoevaluación
+          </a>
+        </nav>
+      </div>
+
+      <div class="sidebar-footer">
+        🔒 <strong>Privacidad:</strong> Este sitio es confidencial, no almacena tus datos ni guarda respuestas de evaluación.
+      </div>
+    </aside>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="main-content">
+      <!-- BARRA DE ESCAPE SEGURO -->
+      <div class="safe-exit-bar">
+        <span class="safe-exit-text">
+          🔒 Navegación confidencial • Tus datos no se guardan en ningún servidor
+        </span>
+        <a href="https://www.google.com" class="safe-exit-link" target="_self">
+          ✕ Salida Rápida (Cerrar)
+        </a>
+      </div>
+
+      <!-- BLOQUE ESPECÍFICO DE CADA VISTA -->
+      {% block content %}{% endblock %}
+    </main>
+  </div>
+
+  <!-- SCRIPT PARA GUARDAR Y APLICAR TEMA SIN RECARGAS EXTRAÑAS -->
+  <script>
+    function setTheme(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('lira-theme', theme);
+      
+      const btnLight = document.getElementById('btn-light');
+      const btnDark = document.getElementById('btn-dark');
+      
+      if (theme === 'dark') {
+        btnDark.classList.add('active');
+        btnLight.classList.remove('active');
+      } else {
+        btnLight.classList.add('active');
+        btnDark.classList.remove('active');
+      }
+    }
+
+    // Cargar tema guardado al inicio
+    (function() {
+      const savedTheme = localStorage.getItem('lira-theme') || 'light';
+      setTheme(savedTheme);
+    })();
+  </script>
+</body>
+</html>

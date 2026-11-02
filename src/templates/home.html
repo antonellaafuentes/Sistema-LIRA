@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="hero-title">Espacio de Orientación y Prevención</div>
+<div class="hero-subtitle">
+  El Sistema LIRA te ayuda a identificar conductas de riesgo en vínculos cotidianos y te conecta con recursos de asistencia profesional gratuitos.
+</div>
+
+<div style="display: grid; grid-template-columns: 1.8fr 1.2fr; gap: 1.5rem; margin-top: 1rem;">
+  <div>
+    <h3 style="margin-bottom: 0.75rem; color: var(--text-primary);">¿Cómo funciona esta plataforma?</h3>
+    <ul style="padding-left: 1.25rem; color: var(--text-secondary); line-height: 1.7;">
+      <li>🔎 <strong>Consulta de señales:</strong> Revisa conductas tipificadas según el grado de control, manipulación o intimidación.</li>
+      <li>📝 <strong>Autoevaluación confidencial:</strong> Realiza un ejercicio de reflexión para identificar dinámicas en tu entorno.</li>
+      <li>🤝 <strong>Directorio de apoyo:</strong> Accede a números de teléfono, centros de atención y horarios disponibles en todo momento.</li>
+    </ul>
+
+    <div class="metrics-grid">
+      <div class="metric-card">
+        <div class="metric-label">Señales tipificadas</div>
+        <div class="metric-value">{{ total_alerts }}</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Redes de ayuda gratuitas</div>
+        <div class="metric-value">{{ total_resources }}</div>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div class="emergency-banner">
+      <h4>🚨 ¿En peligro inmediato?</h4>
+      <p>Si estás viviendo una situación de riesgo inminente, llama al <strong>911</strong> o a la línea nacional especializada (<strong>144</strong>) de inmediato.</p>
+    </div>
+
+    <div class="card-callout">
+      <h5>💬 Tu seguridad es lo primero</h5>
+      <p>
+        Reconocer señales no es exagerar. Buscar información a tiempo permite construir vínculos basados en la libertad y el respeto mutuo.
+      </p>
+    </div>
+  </div>
+</div>
+{% endblock %}

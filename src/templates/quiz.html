@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="hero-title">Cuestionario de Autoevaluación</div>
+<div class="hero-subtitle">
+  Selecciona con tranquilidad si has presenciado o experimentado alguna de estas conductas en una relación.
+</div>
+
+<div class="info-box-privacy">
+  🔒 <strong>Privacidad absoluta:</strong> Esta autoevaluación es orientativa y temporal. Tus respuestas se procesan únicamente durante la consulta y no se guardan en ninguna base de datos.
+</div>
+
+<form method="post" action="/autoevaluacion">
+  {% for category, items in grouped_alerts.items() %}
+  <div class="quiz-section">
+    <div class="quiz-section-title">📌 {{ category }}</div>
+    {% for item in items %}
+    <label class="checkbox-item">
+      <input 
+        type="checkbox" 
+        name="conductas" 
+        value="{{ item.Conducta }}"
+        {% if item.Conducta in selected_conductas %}checked{% endif %}
+      >
+      <div class="checkbox-label">
+        <strong>{{ item.Conducta }}:</strong> {{ item.Descripción }}
+      </div>
+    </label>
+    {% endfor %}
+  </div>
+  {% endfor %}
+
+  <div style="margin-top: 1.25rem;">
+    <button type="submit" class="btn-cta btn-primary" style="padding: 0.7rem 1.6rem;">
+      Analizar respuestas
+    </button>
+  </div>
+</form>
+
+{% if evaluated %}
+  {% if total_checked == 0 %}
+  <div class="quiz-result success">
+    <strong>✅ No has seleccionado señales de alerta de la lista.</strong><br>
+    Las relaciones basadas en el respeto, el diálogo y la libertad recíproca son el pilar de un vínculo sano.
+  </div>
+  {% elif total_checked <= 2 %}
+  <div class="quiz-result warning">
+    <strong>⚠️ Has identificado {{ total_checked }} conducta(s) de riesgo:</strong>
+    <ul style="margin: 0.5rem 0 0.5rem 1.2rem;">
+      {% for c in selected_conductas %}
+      <li>{{ c }}</li>
+      {% endfor %}
+    </ul>
+    Te sugerimos reflexionar sobre estos límites y conversarlo en un entorno seguro. Reconocer conductas a tiempo es clave para evitar dinámicas mayores.
+  </div>
+  {% else %}
+  <div class="quiz-result danger">
+    <strong>🚨 Has identificado {{ total_checked }} conductas de alerta significativas:</strong>
+    <ul style="margin: 0.5rem 0 0.5rem 1.2rem;">
+      {% for c in selected_conductas %}
+      <li>{{ c }}</li>
+      {% endfor %}
+    </ul>
+    Estas dinámicas atentan contra tu integridad y bienestar. Te recomendamos acudir a la sección de <strong>Recursos de Ayuda</strong> para comunicarte gratuitamente con profesionales que pueden orientarte.
+  </div>
+  {% endif %}
+{% endif %}
+
+{% endblock %}

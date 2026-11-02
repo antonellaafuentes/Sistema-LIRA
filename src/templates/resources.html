@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="hero-title">Recursos y Líneas Gratuitas de Asistencia</div>
+<div class="hero-subtitle">
+  Canales oficiales de contención, asesoría legal y apoyo psicológico confidencial. Puedes pulsar directamente para llamar o ingresar al sitio oficial.
+</div>
+
+<div class="resources-grid">
+  {% for item in resources %}
+  <div class="resource-card">
+    <div>
+      <div class="resource-title">🏛️ {{ item.Servicio }}</div>
+      <div class="schedule-text">🕒 <strong>Atención:</strong> {{ item.Horario }}</div>
+      {% if item.Notas and item.Notas != 'nan' %}
+      <div class="resource-note">ℹ️ {{ item.Notas }}</div>
+      {% endif %}
+    </div>
+
+    <div>
+      <a 
+        href="{{ item.action.url }}" 
+        class="btn-cta {{ item.action.btn_class }}" 
+        target="{{ item.action.target }}"
+        {% if item.action.target == '_blank' %}rel="noopener noreferrer"{% endif %}
+      >
+        {{ item.action.label }}
+      </a>
+    </div>
+  </div>
+  {% else %}
+  <div class="card-pro">
+    <p class="card-description">No hay recursos disponibles en este momento.</p>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}
