@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sistema LIRA: Espacio confidencial y seguro para la identificación de señales de alerta en relaciones y directorio de recursos de asistencia gratuitos.">
+  <title>Sistema LIRA | Espacio Seguro y Orientación</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./static/styles.css">
+  <link rel="icon" type="image/svg+xml" href="./static/favicon.svg">
+  <link rel="apple-touch-icon" href="./static/favicon.svg">
+</head>
+<body>
+  <div class="app-layout">
+    <!-- BARRA LATERAL -->
+    <aside class="sidebar">
+      <div>
+        <a href="./" class="brand-header-link" title="Volver al Inicio">
+          <div class="brand-header">
+            <div class="brand-title">
+              <img src="./static/favicon.svg" alt="Logo LIRA" class="brand-logo" width="28" height="28">
+              <span>Sistema LIRA</span>
+            </div>
+            <div class="brand-subtitle">Línea de Información, Recursos y Alerta</div>
+          </div>
+        </a>
+
+        <!-- SELECTOR DE TEMA CLARO / OSCURO -->
+        <div class="theme-switch-box">
+          <button type="button" class="theme-btn active" id="btn-light" onclick="setTheme('light')">
+            ☀️ Claro
+          </button>
+          <button type="button" class="theme-btn" id="btn-dark" onclick="setTheme('dark')">
+            🌙 Oscuro
+          </button>
+        </div>
+
+        <!-- MENÚ DE NAVEGACIÓN -->
+        <nav class="nav-menu">
+          <a href="./" class="nav-item ">
+            🏠 Inicio
+          </a>
+          <a href="./alertas/" class="nav-item active">
+            ⚠️ Señales de Alerta
+          </a>
+          <a href="./recursos/" class="nav-item ">
+            📞 Recursos de Ayuda
+          </a>
+          <a href="./autoevaluacion/" class="nav-item ">
+            📋 Autoevaluación
+          </a>
+        </nav>
+      </div>
+
+      <div class="sidebar-footer">
+        <!-- CRÉDITOS Y PERFILES -->
+        <div class="author-card">
+          <div class="author-label">Desarrollado por</div>
+          <div class="author-name">Antonella Fuentes Muñoz</div>
+          <div class="author-links">
+            <a href="https://github.com/antonellaafuentes" class="author-link-btn" target="_blank" rel="noopener noreferrer" title="Ver perfil de GitHub">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+              </svg>
+              <span>GitHub</span>
+            </a>
+            <a href="https://www.linkedin.com/in/antonella-roxana-fuentes-mu%C3%B1oz-705109431/" class="author-link-btn" target="_blank" rel="noopener noreferrer" title="Ver perfil de LinkedIn">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+              </svg>
+              <span>LinkedIn</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="main-content">
+      <!-- BARRA DE ESCAPE SEGURO -->
+      <div class="safe-exit-bar">
+        <div class="safe-exit-info">
+          <div class="safe-exit-text">
+            🔒 Navegación confidencial • Tus datos no se guardan en ningún servidor
+          </div>
+          <small class="safe-exit-subtext">
+            ℹ️ Este sitio no almacena tus datos ni guarda respuestas de evaluación.
+          </small>
+        </div>
+        <button type="button" class="safe-exit-link" onclick="quickExit()" title="Abre Google en nueva pestaña y reemplaza esta ventana sin dejar rastro en el historial">
+          ✕ Salida Rápida (Cerrar)
+        </button>
+      </div>
+
+      <!-- BLOQUE ESPECÍFICO DE CADA VISTA -->
+      
+<div class="hero-title">Identificación de Señales de Alerta</div>
+<div class="hero-subtitle">
+  Conoce cómo se manifiestan patrones de aislamiento, control o agresiones sutiles en las relaciones.
+</div>
+
+<!-- BARRA DE FILTROS -->
+<div class="filter-bar">
+  <select name="categoria" class="filter-select" id="filter-category" onchange="filterCards()">
+    <option value="Todas las categorías" selected>
+      Todas las categorías
+    </option>
+    
+    <option value="Conductas intimidatorias" >
+      Conductas intimidatorias
+    </option>
+    
+    <option value="Control y Aislamiento" >
+      Control y Aislamiento
+    </option>
+    
+    <option value="Manipulación y agresión psicológica" >
+      Manipulación y agresión psicológica
+    </option>
+    
+  </select>
+
+  <input 
+    type="text" 
+    id="filter-query" oninput="filterCards()" 
+    class="filter-input" 
+    placeholder="Buscar conducta o concepto (ej: celular, celos, culpa)..." 
+    value=""
+  >
+  <button type="button" class="btn-cta btn-primary" style="margin-top: 0; padding: 0.6rem 1rem;" onclick="filterCards()">Buscar</button>
+</div>
+
+<div style="font-size: 0.86rem; color: var(--text-muted); margin-bottom: 1rem;">
+  Mostrando <strong>9</strong> señal(es) encontrada(s)
+</div>
+
+<!-- LISTA DE TARJETAS DE ALERTA -->
+
+<div class="card-pro">
+  <span class="badge-category badge-cat-control">Control y Aislamiento</span>
+  <h3 class="card-title">Aislamiento social</h3>
+  <p class="card-description">Exigir que la pareja se aleje de sus amigos, familiares o actividades que antes disfrutaba.</p>
+</div>
+
+<div class="card-pro">
+  <span class="badge-category badge-cat-control">Control y Aislamiento</span>
+  <h3 class="card-title">Control digital</h3>
+  <p class="card-description">Monitorear de forma constante el teléfono celular, exigir contraseñas, exigir respuestas inmediatas en redes sociales o revisar ubicación en tiempo real.</p>
+</div>
+
+<div class="card-pro">
+  <span class="badge-category badge-cat-control">Control y Aislamiento</span>
+  <h3 class="card-title">Celos excesivos</h3>
+  <p class="card-description">Cuestionar la forma de vestir, los lugares a los que se acude o con quién se habla bajo la justificación de "cuidar" o "amar".</p>
+</div>
+
+<div class="card-pro">
+  <span class="badge-category badge-cat-manipulacion">Manipulación y agresión psicológica</span>
+  <h3 class="card-title">Descalificaciones y humillaciones</h3>
+  <p class="card-description">Criticar de forma constante a la pareja, burlarse de sus opiniones o minimizar sus logros en público y en privado.</p>
+</div>
+
+<div class="card-pro">
+  <span class="badge-category badge-cat-manipulacion">Manipulación y agresión psicológica</span>
+  <h3 class="card-title">Gaslighting</h3>
+  <p class="card-description">Hacer dudar a la persona afectada de su propia realidad, memoria o cordura, restando importancia a conductas agresivas o diciendo que "exagera".</p>
+</div>
+
+<div class="card-pro">
+  <span class="badge-category badge-cat-manipulacion">Manipulación y agresión psicológica</span>
+  <h3 class="card-title">Culpabilización</h3>
+  <p class="card-description">Hacer sentir a la otra persona responsable de los enojos, malos tratos o cambios de humor de su pareja.</p>
+</div>
+
+<div class="card-pro">
+  <span class="badge-category badge-cat-manipulacion">Manipulación y agresión psicológica</span>
+  <h3 class="card-title">Bombardeo de amor</h3>
+  <p class="card-description">Demostraciones excesivas de afecto, atención y promesas exageradas al inicio de la relación para crear dependencia emocional rápida.</p>
+</div>
+
+<div class="card-pro">
+  <span class="badge-category badge-cat-general">Conductas intimidatorias</span>
+  <h3 class="card-title">Temperamento explosivo</h3>
+  <p class="card-description">Cambios repentinos de humor, gritos, portazos o romper objetos cuando algo no sale como la persona agresora desea.</p>
+</div>
+
+<div class="card-pro">
+  <span class="badge-category badge-cat-general">Conductas intimidatorias</span>
+  <h3 class="card-title">Presión y chantaje</h3>
+  <p class="card-description">Amenazar con hacer daño a terceros, lastimarse a sí mismo (chantaje emocional) o terminar la relación si no se hace lo que la otra parte exige.</p>
+</div>
+
+
+    </main>
+  </div>
+
+  <!-- SCRIPT PARA GUARDAR Y APLICAR TEMA Y SALIDA RÁPIDA -->
+  <script>
+    // Salida rápida: abre Google en nueva pestaña y reemplaza la página actual sin dejar historial
+    function quickExit() {
+      // 1. Abrir nueva pestaña con Google
+      window.open('https://www.google.com', '_blank', 'noopener,noreferrer');
+      // 2. Reemplazar la página actual en el historial inmediatamente con Google
+      window.location.replace('https://www.google.com');
+    }
+
+    function setTheme(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('lira-theme', theme);
+      
+      const btnLight = document.getElementById('btn-light');
+      const btnDark = document.getElementById('btn-dark');
+      
+      if (theme === 'dark') {
+        btnDark.classList.add('active');
+        btnLight.classList.remove('active');
+      } else {
+        btnLight.classList.add('active');
+        btnDark.classList.remove('active');
+      }
+    }
+
+    // Inicializar tema: preferir preferencia del sistema operativo / navegador si el usuario no ha elegido manualmente
+    (function() {
+      const savedTheme = localStorage.getItem('lira-theme');
+      if (savedTheme) {
+        setTheme(savedTheme);
+      } else {
+        // Detectar si el navegador / SO prefiere modo oscuro
+        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        setTheme(prefersDark ? 'dark' : 'light');
+      }
+
+      // Escuchar cambios del sistema en tiempo real si el usuario no ha forzado uno manualmente
+      if (window.matchMedia) {
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+          if (!localStorage.getItem('lira-theme')) {
+            setTheme(e.matches ? 'dark' : 'light');
+          }
+        });
+      }
+    })();
+  </script>
+
+    <script>
+      function filterCards() {
+        const cat = document.getElementById('filter-category').value;
+        const q = document.getElementById('filter-query').value.toLowerCase().trim();
+        const cards = document.querySelectorAll('.card-pro');
+        let count = 0;
+        cards.forEach(card => {
+          const badge = card.querySelector('.badge-category');
+          if (!badge) return; // empty state card
+          const cardCat = badge.textContent.trim();
+          const title = (card.querySelector('.card-title') || {}).textContent || '';
+          const desc = (card.querySelector('.card-description') || {}).textContent || '';
+          const text = (title + ' ' + desc).toLowerCase();
+          
+          const matchCat = (cat === 'Todas las categorías' || cardCat === cat);
+          const matchQuery = (!q || text.includes(q));
+          
+          if (matchCat && matchQuery) {
+            card.style.display = 'block';
+            count++;
+          } else {
+            card.style.display = 'none';
+          }
+        });
+        const countEl = document.getElementById('signals-count');
+        if (countEl) countEl.textContent = count;
+      }
+    </script>
+    </body>
+</html>
