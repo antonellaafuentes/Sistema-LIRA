@@ -318,26 +318,26 @@ body {
 /* Contenido Principal */
 .main-content {
   flex: 1;
-  padding: 1.5rem 2.25rem 3rem 2.25rem;
+  padding: 0 2.25rem 3rem 2.25rem;
   max-width: 1100px;
 }
 
-/* Barra de Salida Rápida Sticky (siempre visible sobre el scroll del contenido) */
+/* Barra de Salida Rápida Sticky (100% opaca, fondo sólido para tapar el scroll por detrás) */
 .safe-exit-bar {
   position: sticky;
-  top: 1rem;
-  z-index: 100;
+  top: 0;
+  z-index: 1000;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: var(--safe-bar-bg);
+  background-color: var(--bg-card);
   border: 1px solid var(--border-color);
-  border-radius: 9px;
-  padding: 0.55rem 0.95rem;
+  border-top: none;
+  border-radius: 0 0 10px 10px;
+  padding: 0.65rem 1rem;
   margin-bottom: 1.5rem;
   gap: 0.8rem;
-  box-shadow: var(--shadow-sm);
-  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .safe-exit-info {
@@ -821,7 +821,7 @@ body {
   }
   
   .main-content {
-    padding: 1rem;
+    padding: 0 1rem 2rem 1rem;
   }
 
   .home-layout-grid {
