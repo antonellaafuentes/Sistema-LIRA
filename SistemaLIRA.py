@@ -8,22 +8,22 @@ ruta_csv_1 = os.path.join(carpeta_actual, "trabajo ciencias 1.csv")
 trabajo_ciencias_1 = []
 
 def mostrar_1(trabajo):
-    print(f"Categoria: {trabajo['Categoria']}")
+    print(f"Categoria: {trabajo['Categoría']}")
     print(f"Conducta: {trabajo['Conducta']}")
-    print(f"Descripcion: {trabajo['Descripcion']}")
+    print(f"Descripcion: {trabajo['Descripción']}")
 
 def cargar_1():
     trabajo_ciencias_1.clear()
     if os.path.exists(ruta_csv_1):
         with open(ruta_csv_1, "r", encoding="utf-8-sig", newline="") as f:
-            lector = csv.DictReader(f, delimiter=";")
+            lector = csv.DictReader(f, delimiter=",")
 
             for fila in lector:
                 if not fila or not any(fila.values()):
                     continue
-                fila["Categoria"] = int(str(fila.get("Categoria", "")).strip())
+                fila["Categoría"] = str(fila.get("Categoría", "")).strip()
                 fila["Conducta"] = str(fila.get("Conducta", "")).strip()
-                fila["Descripcion"] = str(fila.get("Descripcion", "")).strip()
+                fila["Descripción"] = str(fila.get("Descripción", "")).strip()
                 trabajo_ciencias_1.append(fila)
 
 
@@ -64,11 +64,9 @@ def listar_2():
     for trabajo in trabajo_ciencias_2:
         mostrar_2(trabajo)
 
-
-    cargar_1()
-    cargar_2()
-
-    while True:
+cargar_1()
+cargar_2()
+while True:
         print("---- Sistema LIRA ----")
         print("1. Señales de alerta")
         print("2. Recursos de ayuda gratuitos")
