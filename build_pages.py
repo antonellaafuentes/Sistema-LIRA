@@ -42,16 +42,27 @@ def build_static_site():
     for cat in categories:
         grouped_alerts[cat] = [a for a in alerts_list if a.get("Categoría") == cat]
         
-    # Helper para ajustar rutas a relativas en GitHub Pages (ej: ./static/...)
+    # Helper para ajustar rutas en GitHub Pages usando directorios limpios (rutas sin .html visible)
+    # Por ejemplo: /alertas/index.html permite navegar a /alertas/
     def fix_paths(html: str) -> str:
-        # Reemplazar rutas de assets
+        # Reemplazar rutas de assets a relativas universales
         html = html.replace('href="/static/', 'href="./static/')
         html = html.replace('src="/static/', 'src="./static/')
-        # Reemplazar navegacion interna
-        html = html.replace('href="/"', 'href="./index.html"')
-        html = html.replace('href="/alertas"', 'href="./alertas.html"')
-        html = html.replace('href="/recursos"', 'href="./recursos.html"')
-        html = html.replace('href="/autoevaluacion"', 'href="./autoevaluacion.html"')
+        # Reemplazar navegacion interna con rutas limpias
+        html = html.replace('href="/"', 'href="./"')
+        html = html.replace('href="/alertas"', 'href="./alertas/"')
+        html = html.replace('href="/recursos"', 'href="./recursos/"')
+        html = html.replace('href="/autoevaluacion"', 'href="./autoevaluacion/"')
+        return html
+
+    def fix_subpage_paths(html: str) -> str:
+        # Para subcarpetas /alertas/, /recursos/, etc. subir un nivel ../
+        html = html.replace('href="/static/', 'href="../static/')
+        html = html.replace('src="/static/', 'src="../static/')
+        html = html.replace('href="/"', 'href="../"')
+        html = html.replace('href="/alertas"', 'href="../alertas/"')
+        html = html.replace('href="/recursos"', 'href="../recursos/"')
+        html = html.replace('href="/autoevaluacion"', 'href="../autoevaluacion/"')
         return html
 
     # 1. index.html (Home)
@@ -114,19 +125,26 @@ def build_static_site():
     """
     html_alerts = html_alerts.replace('Mostrando <strong>{{ alerts|length }}</strong>', 'Mostrando <strong id="signals-count">' + str(len(alerts_list)) + '</strong>')
     html_alerts = html_alerts.replace('</body>', filter_script + '</body>')
+    # 2. alertas (genera /alertas/index.html y alertas.html como fallback)
+    os.makedirs(os.path.join(OUTPUT_DIR, "alertas"), exist_ok=True)
+    with open(os.path.join(OUTPUT_DIR, "alertas", "index.html"), "w", encoding="utf-8") as f:
+        f.write(fix_subpage_paths(html_alerts))
     with open(os.path.join(OUTPUT_DIR, "alertas.html"), "w", encoding="utf-8") as f:
         f.write(fix_paths(html_alerts))
 
-    # 3. recursos.html
+    # 3. recursos (genera /recursos/index.html y recursos.html como fallback)
     t_resources = env.get_template("resources.html")
     html_resources = t_resources.render(
         active_page="resources",
         resources=resources_list
     )
+    os.makedirs(os.path.join(OUTPUT_DIR, "recursos"), exist_ok=True)
+    with open(os.path.join(OUTPUT_DIR, "recursos", "index.html"), "w", encoding="utf-8") as f:
+        f.write(fix_subpage_paths(html_resources))
     with open(os.path.join(OUTPUT_DIR, "recursos.html"), "w", encoding="utf-8") as f:
         f.write(fix_paths(html_resources))
 
-    # 4. autoevaluacion.html (Con evaluación 100% interactiva en navegador)
+    # 4. autoevaluacion (genera /autoevaluacion/index.html y autoevaluacion.html como fallback)
     t_quiz = env.get_template("quiz.html")
     html_quiz = t_quiz.render(
         active_page="quiz",
@@ -167,7 +185,7 @@ def build_static_site():
             <div class="quiz-result danger">
               <strong>🚨 Has identificado ${total} conductas de alerta significativas:</strong>
               <ul style="margin: 0.5rem 0 0.5rem 1.2rem;">${items}</ul>
-              Estas dinámicas atentan contra tu integridad y bienestar. Te recomendamos acudir a la sección de <strong><a href="./recursos.html" style="color: inherit; text-decoration: underline;">Recursos de Ayuda</a></strong> para comunicarte gratuitamente con profesionales que pueden orientarte.
+              Estas dinámicas atentan contra tu integridad y bienestar. Te recomendamos acudir a la sección de <strong><a href="./recursos/" style="color: inherit; text-decoration: underline;">Recursos de Ayuda</a></strong> para comunicarte gratuitamente con profesionales que pueden orientarte.
             </div>`;
         }
         container.innerHTML = html;
@@ -176,6 +194,9 @@ def build_static_site():
     </script>
     """
     html_quiz = html_quiz.replace('</form>', '</form>' + quiz_script)
+    os.makedirs(os.path.join(OUTPUT_DIR, "autoevaluacion"), exist_ok=True)
+    with open(os.path.join(OUTPUT_DIR, "autoevaluacion", "index.html"), "w", encoding="utf-8") as f:
+        f.write(fix_subpage_paths(html_quiz))
     with open(os.path.join(OUTPUT_DIR, "autoevaluacion.html"), "w", encoding="utf-8") as f:
         f.write(fix_paths(html_quiz))
 

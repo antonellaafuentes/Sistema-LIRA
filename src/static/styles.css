@@ -152,6 +152,19 @@ body {
   overflow-y: auto;
 }
 
+.brand-header-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  border-radius: 8px;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.brand-header-link:hover {
+  opacity: 0.88;
+  transform: translateY(-1px);
+}
+
 .brand-header {
   margin-bottom: 1.5rem;
 }
@@ -747,8 +760,16 @@ body {
   color: #FEE2E2;
 }
 
+/* Grilla principal de inicio */
+.home-layout-grid {
+  display: grid;
+  grid-template-columns: 1.8fr 1.2fr;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
 /* ==========================================================================
-   RESPONSIVIDAD (MÓVILES)
+   RESPONSIVIDAD (MÓVILES Y PANTALLAS PEQUEÑAS)
    ========================================================================== */
 @media (max-width: 820px) {
   .app-layout {
@@ -761,11 +782,46 @@ body {
     position: relative;
     border-right: none;
     border-bottom: 1px solid var(--border-color);
-    padding: 1rem;
+    padding: 1rem 1.2rem;
+  }
+
+  .brand-header {
+    margin-bottom: 0.85rem;
+  }
+
+  .nav-menu {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+  }
+
+  .nav-item {
+    padding: 0.75rem 0.65rem;
+    font-size: 0.86rem;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .theme-switch-box {
+    margin-bottom: 0.85rem;
+  }
+
+  .sidebar-footer {
+    margin-top: 1rem;
+    padding-top: 0.85rem;
+  }
+
+  .author-card {
+    padding: 0.65rem 0.75rem;
   }
   
   .main-content {
     padding: 1rem;
+  }
+
+  .home-layout-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
   }
   
   .metrics-grid, .resources-grid {
@@ -774,20 +830,49 @@ body {
   
   .filter-bar {
     flex-direction: column;
+    gap: 0.65rem;
+  }
+
+  .filter-input, .filter-select {
+    width: 100%;
+    font-size: 0.95rem;
   }
   
   .safe-exit-bar {
     flex-direction: column;
     align-items: stretch;
+    gap: 0.75rem;
+    padding: 0.75rem 0.85rem;
   }
   
   .safe-exit-link {
     text-align: center;
+    width: 100%;
+    padding: 0.6rem 0.9rem;
+    font-size: 0.88rem;
   }
   
   .btn-cta {
     width: 100%;
     justify-content: center;
+    padding: 0.7rem 1.2rem;
+  }
+
+  /* Autoevaluación táctil en móvil */
+  .checkbox-item {
+    padding: 0.85rem 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-menu {
+    grid-template-columns: 1fr;
+  }
+  .hero-title {
+    font-size: 1.45rem;
+  }
+  .hero-subtitle {
+    font-size: 0.92rem;
   }
 }
 
