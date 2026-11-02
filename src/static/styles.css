@@ -322,10 +322,23 @@ body {
   gap: 0.8rem;
 }
 
+.safe-exit-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
 .safe-exit-text {
-  font-size: 0.84rem;
+  font-size: 0.85rem;
   color: var(--text-primary);
-  font-weight: 500;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.safe-exit-subtext {
+  font-size: 0.77rem;
+  color: var(--text-secondary);
+  line-height: 1.3;
 }
 
 .safe-exit-link {
