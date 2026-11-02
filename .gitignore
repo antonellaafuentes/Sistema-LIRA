@@ -1,3 +1,112 @@
-__pycache__/
-.vscode/
+# ==========================================
+# Carpetas temporales y deprecadas
+# ==========================================
+deprecated/
 
+.env
+.env.*
+*.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Streamlit secrets y configuraciones privadas
+.streamlit/secrets.toml
+secrets.toml
+
+# Claves criptográficas y tokens
+*.pem
+*.key
+*.cert
+*.crt
+*.pfx
+*.p12
+*.id_rsa
+*.id_dsa
+*.keystore
+
+# Credenciales de servicios en la nube / APIs
+credentials.json
+client_secret*.json
+service_account*.json
+*.token
+token.json
+oauth*.json
+
+# ==========================================
+# Entornos Virtuales
+# ==========================================
+venv/
+.venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# ==========================================
+# Caches y Artefactos de Python
+# ==========================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# ==========================================
+# Pruebas y Cobertura
+# ==========================================
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+.hypothesis/
+
+# ==========================================
+# Editores e IDEs
+# ==========================================
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.swp
+*.swo
+*~
+
+# ==========================================
+# Archivos del Sistema Operativo y Temporales
+# ==========================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+[Dd]esktop.ini
+
+# Logs y volcados de depuración
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.tmp
+*.temp
