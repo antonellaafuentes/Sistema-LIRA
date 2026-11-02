@@ -340,6 +340,19 @@ body {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
+/* Zona de desvanecimiento / margen de seguridad: hace que el contenido
+   desaparezca progresivamente ~5px antes de tocar la barra */
+.safe-exit-bar::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: 8px;
+  background: linear-gradient(to bottom, var(--bg-page), transparent);
+  pointer-events: none;
+}
+
 .safe-exit-info {
   display: flex;
   flex-direction: column;
